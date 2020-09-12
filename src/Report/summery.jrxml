@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="summery" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ab918c9e-f099-4c67-8a54-b28e2546784b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Ashan Lakshitha\\Documents\\NetBeansProjects\\pulinaoil\\src\\Report\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fromdate" class="java.lang.String"/>
+	<parameter name="todate" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     name
+FROM
+     `customer` customer where id = '0']]>
+	</queryString>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="5" width="229" height="28" uuid="52dd2e67-7102-4c32-b474-aaf15d1f81bc"/>
+				<textElement>
+					<font fontName="Adobe Hebrew" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[WIJENAYAKA STORES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="337" y="0" width="177" height="23" uuid="d26437f7-7b26-4619-bfb9-75481c586d64"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Summery]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="33" width="100" height="20" uuid="c2db3a70-5b5f-45fa-8eda-238250fae593"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[From Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="33" width="100" height="20" uuid="1acd4945-2f5a-4e1d-8ce5-e4cc56e94e0d"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[To Date]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="293" y="56" width="121" height="20" uuid="81330a1e-7ef2-418b-a32c-6b91cbdcd871"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fromdate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="56" width="123" height="20" uuid="22c623d8-28f6-4f3a-8e47-d9e93bc54145"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{todate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="42" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="20" width="555" height="13" uuid="ac691187-1142-40b7-b21f-d2fbafffd642"/>
+				<subreportParameter name="fromdate">
+					<subreportParameterExpression><![CDATA[$P{fromdate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="todate">
+					<subreportParameterExpression><![CDATA[$P{todate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["summery_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="0" y="0" width="128" height="20" uuid="e7e12cac-eabc-45c8-a9c4-71f910fe1d5b"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sales & Profit]]></text>
+			</staticText>
+		</band>
+		<band height="40">
+			<subreport>
+				<reportElement x="0" y="20" width="555" height="10" uuid="14e6624e-cab4-426a-a94f-dfb6810b4b11"/>
+				<subreportParameter name="fromdate">
+					<subreportParameterExpression><![CDATA[$P{fromdate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="todate">
+					<subreportParameterExpression><![CDATA[$P{todate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["summery_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="0" y="0" width="128" height="20" uuid="86594cf8-f481-4ea7-a79b-693264e88ad9"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Payments]]></text>
+			</staticText>
+		</band>
+		<band height="50"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

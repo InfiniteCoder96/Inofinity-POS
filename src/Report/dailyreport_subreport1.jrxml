@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="dailyreport_sales" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="43da61a0-dbb8-4305-b2d3-8092819cb70d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fromdate" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="todate" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     invoice.`stock_product_id` AS product_id,
+     avg(invoice.`price`) AS avg_price,
+     sum(invoice.`qty`) AS qty,
+     sum(invoice.`subtotal`) AS invoice_subtotal,
+     product.`name` AS product_name,
+     product.`brand_name` AS product_brand_name
+FROM
+     `invoice` invoice inner join  product on invoice.stock_product_id = product.id inner join invoice_reg on invoice_reg.id = invoice.invoice_reg_id
+where invoice_reg.date between  $P{fromdate} and $P{todate}
+
+group by invoice.`stock_product_id`]]>
+	</queryString>
+	<field name="product_id" class="java.lang.String"/>
+	<field name="avg_price" class="java.lang.Double"/>
+	<field name="qty" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="invoice_subtotal" class="java.lang.Double"/>
+	<field name="product_name" class="java.lang.String"/>
+	<field name="product_brand_name" class="java.lang.String"/>
+	<variable name="total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{invoice_subtotal}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="58" splitType="Stretch">
+			<staticText>
+				<reportElement x="14" y="10" width="229" height="17" uuid="55f49065-2d81-47ae-b3f8-26264921add1"/>
+				<textElement>
+					<font fontName="Adobe Hebrew" size="17" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sales]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="27" width="555" height="24" forecolor="#FFFFFF" backcolor="#000000" uuid="905459ef-b8fa-45f5-902d-c2c07f3426c6"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="14" y="32" width="68" height="15" forecolor="#FFFFFF" backcolor="#000000" uuid="09e9c7b3-3c2c-4900-9696-263a4853bdff"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product No#]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="94" y="32" width="225" height="15" forecolor="#FFFFFF" backcolor="#000000" uuid="6637c8cd-4e13-46db-99ee-6e411bbe20a1"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="334" y="32" width="68" height="15" forecolor="#FFFFFF" backcolor="#000000" uuid="7ff97b47-1916-4117-94bb-4848df59aa05"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Avg Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="415" y="32" width="47" height="15" forecolor="#FFFFFF" backcolor="#000000" uuid="26de37e5-8f80-46df-a9da-16afb50befd8"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="476" y="32" width="68" height="15" forecolor="#FFFFFF" backcolor="#000000" uuid="38971eec-baf1-403d-90be-9c3752869021"/>
+				<textElement textAlignment="Right">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Sale]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="462" y="0" width="86" height="20" uuid="75a279cb-3448-4ffe-870a-25d213e7ffb0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoice_subtotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="402" y="0" width="60" height="20" uuid="43f141b6-7857-4f61-adcd-8464245e85ed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="319" y="0" width="71" height="20" uuid="924d09f3-c7aa-4ac9-bec1-2403dd1fc1b0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{avg_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="0" width="225" height="20" uuid="299d2077-5f05-441a-b19a-9a04b6d19b8b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8" y="0" width="86" height="20" uuid="4ac570e6-f97e-4769-9930-2dd2142a0032"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{product_id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

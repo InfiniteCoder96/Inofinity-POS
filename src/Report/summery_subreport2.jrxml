@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="summery_subreport2" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a8537282-ea8e-43dc-84c0-72ab17cf07ce">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fromdate" class="java.lang.String"/>
+	<parameter name="todate" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     sum(customer_payment.`payment`) AS totalpayment,
+     customer.`id` AS customer_id,
+     customer.`name` AS customer_name,
+     customer.`tel` AS customer_tel,
+     customer.`balance` AS customer_balance
+FROM
+     `customer` customer INNER JOIN `customer_payment` customer_payment ON customer.`id` = customer_payment.`customer_id`
+
+where customer_payment.date between $P{fromdate} and $P{todate}
+
+group by
+     `customer_id`]]>
+	</queryString>
+	<field name="totalpayment" class="java.lang.Double"/>
+	<field name="customer_id" class="java.lang.Integer"/>
+	<field name="customer_name" class="java.lang.String"/>
+	<field name="customer_tel" class="java.lang.String"/>
+	<field name="customer_balance" class="java.lang.Double"/>
+	<variable name="payments" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalpayment}.doubleValue()]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="43" height="20" forecolor="#FFFFFF" backcolor="#333333" uuid="188c36be-9d6f-4b15-9538-973aca3dc398"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ ID#]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="43" y="0" width="194" height="20" forecolor="#FFFFFF" backcolor="#333333" uuid="327e4835-e307-4df8-8c38-68644316ab7b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="237" y="0" width="100" height="20" forecolor="#FFFFFF" backcolor="#333333" uuid="75df132f-2211-4734-93d0-8d6804e301fa"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telephone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="337" y="0" width="100" height="20" forecolor="#FFFFFF" backcolor="#333333" uuid="78eed912-8cb0-4549-8e27-3aa129ed25fe"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Payments]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="437" y="0" width="118" height="20" forecolor="#FFFFFF" backcolor="#333333" uuid="fc6c45b3-a639-4807-a5ab-ba6015ae6580"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Credit Balance ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="4" width="30" height="16" uuid="8131c398-c579-4cc0-a0df-9a103a29d761"/>
+				<textFieldExpression><![CDATA[$F{customer_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="4" width="207" height="16" uuid="7a57180c-56cd-4965-a909-c9e2c006b499"/>
+				<textFieldExpression><![CDATA[$F{customer_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="4" width="100" height="16" uuid="ed9c2f53-08b9-4ec7-904e-7224b949b922"/>
+				<textFieldExpression><![CDATA[$F{customer_tel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="4" width="100" height="16" uuid="6ee6a3b5-30d0-45fe-b8c7-e87816c533ac"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{totalpayment}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="437" y="4" width="118" height="16" uuid="922cb020-aa35-4070-89c9-31d1ea97c3c8"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{customer_balance}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="337" y="10" width="145" height="34" forecolor="#FFFFFF" backcolor="#333333" uuid="d77a6576-0565-4577-9211-75bf4c89784d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Total Payments  :]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="437" y="10" width="116" height="34" forecolor="#FFFFFF" backcolor="#333333" uuid="dac2b553-db7f-4b7b-8502-3aaf730f5fc0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new DecimalFormat("##,###.00").format($V{payments})]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

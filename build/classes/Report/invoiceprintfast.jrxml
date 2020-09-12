@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Untitled_report_1" pageWidth="216" pageHeight="842" columnWidth="156" leftMargin="30" rightMargin="30" topMargin="0" bottomMargin="20" uuid="f349b49b-2c2d-4d38-b67a-ce867b2ad5fe">
+	<property name="ireport.scriptlethandling" value="2"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="ID" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\invoice\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     invoice.`saleid` AS invoice_saleid,
+     invoice.`invoice_reg_id` AS invoice_invoice_reg_id,
+     invoice.`stock_id` AS invoice_stock_id,
+     invoice.`stock_product_id` AS invoice_stock_product_id,
+     invoice.`price` AS invoice_price,
+     invoice.`qty` AS invoice_qty,
+     invoice.`subtotal` AS invoice_subtotal,
+     invoice_reg.`id` AS invoice_reg_id,
+     invoice_reg.`date` AS invoice_reg_date,
+     invoice_reg.`total` AS invoice_reg_total,
+     invoice_reg.`discount` AS invoice_reg_discount,
+     invoice_reg.`payment` AS invoice_reg_payment,
+     invoice_reg.`due` AS invoice_reg_due,
+     invoice_reg.`grandtotal` AS invoice_reg_grandtotal,
+     invoice_reg.`user_usename` AS invoice_reg_user_usename,
+     invoice_reg.`customer_id` AS invoice_reg_customer_id,
+     invoice_reg.`extra` AS invoice_reg_extra,
+     product.`id` AS product_id,
+     product.`name` AS product_name,
+     product.`brand_name` AS product_brand_name,
+     stock.`maxprice` AS stock_maxprice,
+     customer.`id` AS customer_id,
+     customer.`name` AS customer_name,
+     customer.`address` AS customer_address,
+     customer.`tel` AS customer_tel,
+     customer.`NIC` AS customer_NIC,
+     customer.`extra` AS customer_extra,
+     customer.`balance` AS customer_balance
+FROM
+     `invoice_reg` invoice_reg INNER JOIN `invoice` invoice ON invoice_reg.`id` = invoice.`invoice_reg_id`
+     INNER JOIN `stock` stock ON invoice.`stock_id` = stock.`id`
+     AND stock.`product_id` = invoice.`stock_product_id`
+     INNER JOIN `product` product ON stock.`product_id` = product.`id`
+     INNER JOIN `customer` customer ON invoice_reg.`customer_id` = customer.`id`
+WHERE
+     invoice_reg.`id` = $P{ID}]]>
+	</queryString>
+	<field name="invoice_saleid" class="java.lang.Integer"/>
+	<field name="invoice_invoice_reg_id" class="java.lang.Integer"/>
+	<field name="invoice_stock_id" class="java.lang.Integer"/>
+	<field name="invoice_stock_product_id" class="java.lang.String"/>
+	<field name="invoice_price" class="java.lang.Double"/>
+	<field name="invoice_qty" class="java.lang.Double"/>
+	<field name="invoice_subtotal" class="java.lang.Double"/>
+	<field name="invoice_reg_id" class="java.lang.Integer"/>
+	<field name="invoice_reg_date" class="java.sql.Timestamp"/>
+	<field name="invoice_reg_total" class="java.lang.Double"/>
+	<field name="invoice_reg_discount" class="java.lang.Double"/>
+	<field name="invoice_reg_payment" class="java.lang.Double"/>
+	<field name="invoice_reg_due" class="java.lang.Double"/>
+	<field name="invoice_reg_grandtotal" class="java.lang.Double"/>
+	<field name="invoice_reg_user_usename" class="java.lang.String"/>
+	<field name="invoice_reg_customer_id" class="java.lang.Integer"/>
+	<field name="invoice_reg_extra" class="java.lang.String"/>
+	<field name="product_id" class="java.lang.String"/>
+	<field name="product_name" class="java.lang.String"/>
+	<field name="product_brand_name" class="java.lang.String"/>
+	<field name="stock_maxprice" class="java.lang.Double"/>
+	<field name="customer_id" class="java.lang.Integer"/>
+	<field name="customer_name" class="java.lang.String"/>
+	<field name="customer_address" class="java.lang.String"/>
+	<field name="customer_tel" class="java.lang.String"/>
+	<field name="customer_NIC" class="java.lang.String"/>
+	<field name="customer_extra" class="java.lang.String"/>
+	<field name="customer_balance" class="java.lang.Double"/>
+	<variable name="countqty" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{invoice_qty}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="111" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText-8" x="-20" y="66" width="53" height="17" uuid="7ce8ec00-7550-4f86-9b87-005ad0d1b923"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Bill No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-9" x="-20" y="82" width="50" height="17" uuid="d1b08e41-20f0-4d62-b57d-94d709e1b196"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Date         :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="22" y="65" width="131" height="18" uuid="71a5c6ee-5a01-4b73-abb7-e5f081dfff32"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoice_invoice_reg_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="22" y="82" width="158" height="17" uuid="632b6169-7918-44a6-9bda-5da151473631"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("YYYY-MM-dd                     hh:mm a").format($F{invoice_reg_date})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-2" x="-20" y="65" width="195" height="1" uuid="d410f3bc-2861-49a7-934f-8d3c5048314a"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-9" x="87" y="84" width="50" height="17" uuid="7ddffe4c-0dba-40c7-b946-e698cc261209"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Time   :]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-2" x="-20" y="105" width="195" height="1" uuid="77ec1449-4e7a-4ade-a1e6-d6be70db42ba"/>
+			</line>
+			<staticText>
+				<reportElement x="-20" y="0" width="195" height="27" uuid="b0bc3304-2f04-4e9d-b944-ddff54211d41"/>
+				<textElement textAlignment="Center">
+					<font fontName="Iskoola Pota" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[විජේනායක ස්ටෝර්ස්]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="46" width="155" height="19" uuid="324eccd3-0f82-4f2b-8ae3-2a35c2b6ed6a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Iskoola Pota" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[TP : 032-2248390 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="27" width="155" height="19" uuid="4d3ea466-1ca7-4378-a03b-2a9f36942a86"/>
+				<textElement textAlignment="Center">
+					<font fontName="Iskoola Pota" size="13" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ගල්මොරුව , පොතුවිල  .]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText-7" x="311" y="11" width="0" height="0" uuid="26815d36-eac5-4e5e-9919-dfc687e2ac37"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<text><![CDATA[Static Text]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="-19" y="1" width="69" height="15" uuid="86440e30-e43a-4213-a856-ea48d02e4d14"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Iskoola Pota" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="42" y="1" width="49" height="13" uuid="cade63c5-34f7-4599-9dd0-edb03cdec7de"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format(Double.valueOf($F{invoice_price}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="99" y="1" width="26" height="13" uuid="01643140-402f-44b7-b18f-e87311861981"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoice_qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="1" width="50" height="13" uuid="973095de-3519-445e-9660-ba74f8521a78"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0.00").format(Double.valueOf($F{invoice_subtotal}))]]></textFieldExpression>
+			</textField>
+		</band>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<lastPageFooter>
+		<band splitType="Stretch"/>
+	</lastPageFooter>
+	<summary>
+		<band height="72" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText-22" x="1" y="39" width="154" height="27" uuid="5702d6f0-ef54-47a2-b36f-b8a026db4553"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Iskoola Pota" size="12" isBold="false" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[-- ස්තුතියි නැවත එන්න --]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-23" x="33" y="7" width="0" height="0" uuid="c52cc532-ca97-40c1-b291-0318114b5765"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<text><![CDATA[Static Text]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-24" x="-19" y="54" width="195" height="14" uuid="76e43021-5974-4136-adda-96c336ecbe39"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Software By ZINASIA. 076 7 722 732]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-2" x="-19" y="5" width="194" height="1" uuid="a761d9c5-0df6-4189-a4d7-276ffe1902c9"/>
+			</line>
+			<line>
+				<reportElement key="line-3" x="233" y="9" width="1" height="1" uuid="3a3b0332-530f-4343-add4-ed106796bd6a"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-25" x="11" y="11" width="88" height="17" uuid="a434ac74-4d69-4a1d-a0e4-275b817bbde4"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Iskoola Pota" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[මුළු මුදල]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="65" y="11" width="81" height="17" uuid="5afc6c79-d7d4-438c-98ab-6aa8cf853ddf"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{invoice_reg_total}))]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-2" x="-19" y="33" width="194" height="1" uuid="52f148b0-ee98-4fcd-9aae-d1f9caa18995"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="66237e04-8004-4047-80e6-725ee741691b">
+	<property name="ireport.zoom" value="1.3310000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="Table Dataset 1" uuid="158defe5-f6f3-4b2a-a7b8-b3352472f5df"/>
+	<queryString>
+		<![CDATA[SELECT
+     tmpprint.`id` AS tmpprint_id,
+     tmpprint.`pid` AS tmpprint_pid,
+     tmpprint.`price` AS tmpprint_price,
+     tmpprint.`defprice` AS tmpprint_defprice
+FROM
+     `tmpprint` tmpprint]]>
+	</queryString>
+	<field name="tmpprint_id" class="java.lang.Long"/>
+	<field name="tmpprint_pid" class="java.lang.String"/>
+	<field name="tmpprint_price" class="java.lang.Double"/>
+	<field name="tmpprint_defprice" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25"/>
+	</columnHeader>
+	<detail>
+		<band height="87" splitType="Stretch">
+			<elementGroup>
+				<staticText>
+					<reportElement mode="Opaque" x="27" y="3" width="90" height="16" uuid="8128ed96-9112-4087-8f24-b3a0499c0a67"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pulina Motors]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="34" y="16" width="73" height="20" uuid="f28330eb-7b01-4d58-8139-db485dfeeab1"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tmpprint_pid}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="27" y="54" width="90" height="15" uuid="e4cbffc5-74d6-41b4-8e7f-855bd4e5ed6e"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9" isBold="true" isItalic="false" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[New Discount Price]]></text>
+				</staticText>
+			</elementGroup>
+			<textField>
+				<reportElement mode="Transparent" x="27" y="30" width="90" height="20" uuid="497f297b-a712-462a-b19d-ef307976f621"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="false" isStrikeThrough="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_price}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="27" y="64" width="90" height="20" uuid="2bb8327b-19fb-4075-8d79-68a1a18fb0c2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_defprice}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="117" y="54" width="90" height="15" uuid="098faae9-86ec-4fc4-9efe-5265e48397d4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[New Discount Price]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="124" y="16" width="73" height="20" uuid="f0e649ba-a032-41ef-ba30-620d37372ffe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tmpprint_pid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="117" y="30" width="90" height="20" uuid="fd216fe7-e531-40f4-9991-8345f01ee1f2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="false" isStrikeThrough="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_price}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="117" y="64" width="90" height="20" uuid="71d25729-b7a7-40c0-9ea8-aa8d78e9a0b4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_defprice}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="117" y="3" width="90" height="16" uuid="b422386a-44fd-4d79-9e4a-a2d5ca24a0ca"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pulina Motors]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="208" y="54" width="90" height="15" uuid="4bfeb16c-e3b8-4324-b63e-48dfa2b93d34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[New Discount Price]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="208" y="64" width="90" height="20" uuid="0ff948e5-c844-47a8-82bd-1b4476b865f6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_defprice}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="208" y="30" width="90" height="20" uuid="83cd3017-8f19-4940-9d85-fdec98bacfbe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="false" isStrikeThrough="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_price}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="208" y="4" width="90" height="16" uuid="2f8f23d9-1a3e-48b4-bcd5-028d52a7f791"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pulina Motors]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="215" y="17" width="73" height="20" uuid="e014e7ac-303c-45d5-b75b-a7e169e6ec3f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tmpprint_pid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="298" y="30" width="90" height="20" uuid="d78b6db5-1dfe-4365-83c9-5a911457fe41"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="false" isStrikeThrough="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_price}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="305" y="17" width="73" height="20" uuid="4f94ab3c-ad21-4353-84ce-99b31e54ba1c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tmpprint_pid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="298" y="64" width="90" height="20" uuid="11c6d40e-2e24-41db-a78f-41893bc20e43"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_defprice}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="298" y="4" width="90" height="16" uuid="f5989132-a548-47f7-bde8-8f85da899525"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pulina Motors]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="298" y="54" width="90" height="15" uuid="8b796ded-240a-41ab-b660-c917cce93e90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[New Discount Price]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="389" y="64" width="90" height="20" uuid="0d03f0ae-cf32-41fc-b10e-036f5948e644"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_defprice}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="396" y="17" width="73" height="20" uuid="91a3f655-5b42-438a-bf20-72ebb37304ae"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tmpprint_pid}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="389" y="4" width="90" height="16" uuid="692069e8-a582-42ad-9f96-9b8940eb8e96"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pulina Motors]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="389" y="30" width="90" height="20" uuid="575c11fe-b3be-4912-8a18-7cb0648627c8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="false" isStrikeThrough="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_price}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="389" y="54" width="90" height="15" uuid="9b2ebe21-9d48-4fbe-a90a-b72e517152fa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[New Discount Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="480" y="54" width="90" height="15" uuid="dd44dd41-128d-4042-8bb2-4321b65bd040"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[New Discount Price]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="480" y="30" width="90" height="20" uuid="3c14d15c-f1c8-4796-bfea-930e7c6ef556"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="false" isStrikeThrough="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_price}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="480" y="4" width="90" height="16" uuid="9ac66cd2-df96-4aaf-8860-c59e7d29c529"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pulina Motors]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="480" y="64" width="90" height="20" uuid="3c847672-f4b6-4a4c-a04a-95fd99015904"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_defprice}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="489" y="18" width="73" height="20" uuid="e9d7df0a-0ce9-4856-ae63-421f001b7d19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tmpprint_pid}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="38" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

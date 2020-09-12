@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BARCODER" language="groovy" pageWidth="85" pageHeight="63" columnWidth="85" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2de254cd-10a2-4815-8eba-8fd533f6343f">
+	<property name="ireport.zoom" value="3.13842837672101"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ID" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     tmpprint.`pid` AS tmpprint_pid,
+     tmpprint.`stid` AS stid,
+     tmpprint.`price` AS tmpprint_price,
+     tmpprint.`sname` AS sname,
+     tmpprint.`exp` AS exp,
+     tmpprint.`mfd` AS mfd,
+     name.`bname` AS name_bname
+FROM
+     `tmpprint` tmpprint,
+     `name` name]]>
+	</queryString>
+	<field name="tmpprint_pid" class="java.lang.String"/>
+	<field name="stid" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tmpprint_price" class="java.lang.Double"/>
+	<field name="sname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="exp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mfd" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name_bname" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="62" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="9" width="77" height="10" uuid="fa1265b1-d3fd-40b4-be3a-ca938c0b2614"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="FMSamantha" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="39" width="30" height="13" uuid="6f3d0562-66d4-4803-a507-7421e5491af4"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat("0.00").format($F{tmpprint_price})]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="6" y="20" width="73" height="20" uuid="092d4bb4-8d66-470f-a454-808c767f6d6c"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code39" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{tmpprint_pid}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement x="29" y="39" width="51" height="13" uuid="ac7cb4f0-ee7f-4981-8caa-f83eebd667fc"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None">
+					<font fontName="Times New Roman" size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mfd}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="29" y="49" width="51" height="13" uuid="126e36b3-9aa6-41d2-a4e9-9238df03d20f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None">
+					<font fontName="Times New Roman" size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{exp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="52" width="25" height="10" uuid="4cad88b7-7536-417b-88b9-6cd8d7c3e4ad"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="Times New Roman" size="6" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["#"+$F{stid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="0" width="77" height="10" uuid="75c03e01-a9d7-47a6-9917-aceafb67fbab"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["EGGLAND SUPER"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

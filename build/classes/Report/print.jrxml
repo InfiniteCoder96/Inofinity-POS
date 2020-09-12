@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="66237e04-8004-4047-80e6-725ee741691b">
+	<property name="ireport.zoom" value="1.3310000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="Table Dataset 1" uuid="158defe5-f6f3-4b2a-a7b8-b3352472f5df"/>
+	<queryString>
+		<![CDATA[SELECT
+     tmpprint.`id` AS tmpprint_id,
+     tmpprint.`pid` AS tmpprint_pid,
+     tmpprint.`price` AS tmpprint_price
+FROM
+     `tmpprint` tmpprint]]>
+	</queryString>
+	<field name="tmpprint_id" class="java.lang.Long"/>
+	<field name="tmpprint_pid" class="java.lang.String"/>
+	<field name="tmpprint_price" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25"/>
+	</columnHeader>
+	<detail>
+		<band height="57" splitType="Stretch">
+			<elementGroup>
+				<staticText>
+					<reportElement mode="Opaque" x="27" y="3" width="90" height="16" uuid="8128ed96-9112-4087-8f24-b3a0499c0a67"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pulina Motors]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="34" y="19" width="73" height="20" uuid="f28330eb-7b01-4d58-8139-db485dfeeab1"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tmpprint_pid}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<staticText>
+				<reportElement mode="Opaque" x="117" y="3" width="90" height="16" uuid="4ece5e59-1f36-40f0-8181-74f091d74c1b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pulina Motors]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="207" y="3" width="90" height="16" uuid="3f3e23df-b0bb-4109-b185-ea0d6b24f7d4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pulina Motors]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="297" y="3" width="90" height="16" uuid="f837426c-314a-4847-ac13-dbcc8f5c4301"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pulina Motors]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="388" y="3" width="90" height="16" uuid="c5c3c4ad-1b1d-4f11-b0dc-dd5ea2047806"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pulina Motors]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="478" y="3" width="90" height="16" uuid="fa6f8fa7-50dc-4593-a784-37641961568f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pulina Motors]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="214" y="19" width="73" height="20" uuid="4e65e911-3218-4d9b-a4cd-13e849b8fc32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tmpprint_pid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="127" y="19" width="73" height="20" uuid="c88e5282-6c75-4e61-a5b4-58613a301018"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tmpprint_pid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="304" y="20" width="73" height="20" uuid="3e1d617d-9492-40f9-aeb2-39d46d0d1f48"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tmpprint_pid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="396" y="20" width="73" height="20" uuid="3056b91e-68cb-4a21-b838-3da0b23a9ff5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tmpprint_pid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="485" y="20" width="73" height="20" uuid="ffdf2755-6293-4783-bf13-99790f463a35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tmpprint_pid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="27" y="36" width="90" height="20" uuid="497f297b-a712-462a-b19d-ef307976f621"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_price}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="117" y="36" width="90" height="20" uuid="d74d7b34-44ac-49eb-93d5-38a2bf3c0f9f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_price}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="207" y="36" width="90" height="20" uuid="bd668f84-9f7d-4748-a9b8-cffc244dca46"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_price}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="297" y="36" width="90" height="20" uuid="304a1593-6535-46a2-b3e4-dd912492da96"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_price}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="387" y="36" width="90" height="20" uuid="78f418ed-71ce-4653-9ad4-d7b7c397035b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_price}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="477" y="36" width="90" height="20" uuid="72080786-59ba-4edf-8cea-adc56115d3d4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{tmpprint_price}))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="32" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

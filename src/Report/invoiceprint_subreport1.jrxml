@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="invoiceprint_subreport1" language="groovy" pageWidth="216" pageHeight="802" columnWidth="216" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f6bf749d-9b45-43c7-ad9b-bbe72d2ff0de">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="invoiceid" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     sum((stock.`maxprice`-invoice.`price`)*invoice.`qty`) AS invoice_discount
+FROM
+     `stock` stock INNER JOIN `invoice` invoice ON stock.`id` = invoice.`stock_id`
+     AND stock.`product_id` = invoice.`stock_product_id`
+WHERE
+     invoice.`invoice_reg_id` = $P{invoiceid} and ( stock.`maxprice`-invoice.`price` ) > 0
+group by
+invoice.`invoice_reg_id`]]>
+	</queryString>
+	<field name="invoice_discount" class="java.lang.Double"/>
+	<variable name="totaldiscount" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{invoice_discount}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="32" y="0" width="115" height="24" uuid="666b7d71-a4e1-4786-b571-09e1bc707cd8"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{invoice_discount}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-25" x="5" y="0" width="88" height="24" uuid="7adcfb88-9555-4bad-ae32-b032a0ed2998"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Iskoola Pota" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ඔබ ලැබූ ලාභය]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

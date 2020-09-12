@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="invoiceprint_discount" language="groovy" pageWidth="216" pageHeight="802" columnWidth="216" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="86d52faf-97e0-49ea-8934-e7505efea2ad">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="saleid" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$F{invoice_saleid}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     (stock.`maxprice`- invoice.`price`) * invoice.`qty` AS invoice_discount,
+     invoice.`qty` AS invoice_qty,
+     stock.`maxprice` AS stock_maxprice,
+     invoice.`saleid` AS invoice_saleid
+FROM
+     `stock` stock INNER JOIN `invoice` invoice ON stock.`id` = invoice.`stock_id`
+     AND stock.`product_id` = invoice.`stock_product_id`
+WHERE
+     invoice.`saleid` = $P{saleid} and ( stock.`maxprice`-invoice.`price` ) > 0]]>
+	</queryString>
+	<field name="invoice_discount" class="java.lang.Double"/>
+	<field name="invoice_qty" class="java.lang.Double"/>
+	<field name="stock_maxprice" class="java.lang.Double"/>
+	<field name="invoice_saleid" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="55" height="18" uuid="620ff138-3b8d-44ac-be80-b0f5ede6389e"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.DecimalFormat(" #,##0.00").format(Double.valueOf($F{invoice_discount}))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

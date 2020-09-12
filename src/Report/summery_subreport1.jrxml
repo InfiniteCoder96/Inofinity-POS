@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="summery_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="74f2c609-ddc0-400f-bd80-a6a8a65cca59">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fromdate" class="java.lang.String"/>
+	<parameter name="todate" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     invoice.`stock_id` AS invoice_stock_id,
+     product.`name` AS product_name,
+     product.`brand_name` AS brand_name ,
+     invoice.`stock_product_id` AS product_id,
+     avg(invoice.`price`) AS avg_price,
+     sum(invoice.`qty`) AS qty,
+     sum(invoice.`subtotal`) AS sale,
+     sum(invoice.`totalprofit`) AS profit
+
+FROM
+     `invoice` invoice inner join `product` product on invoice.`stock_product_id` = product.`id` inner join invoice_reg on invoice.invoice_reg_id = invoice_reg.id
+
+WHERE invoice_reg.date between  $P{fromdate} and $P{todate}
+
+GROUP BY
+	 invoice.`stock_id`]]>
+	</queryString>
+	<field name="invoice_stock_id" class="java.lang.Integer"/>
+	<field name="product_name" class="java.lang.String"/>
+	<field name="brand_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="product_id" class="java.lang.String"/>
+	<field name="avg_price" class="java.lang.Double"/>
+	<field name="qty" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sale" class="java.lang.Double"/>
+	<field name="profit" class="java.lang.Double"/>
+	<variable name="profit" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{profit}.doubleValue()]]></variableExpression>
+	</variable>
+	<variable name="sale" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{sale}.doubleValue()]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="2" width="52" height="20" forecolor="#FFFFFF" backcolor="#333333" uuid="00ace4f0-e85a-4b6f-92a4-7595b12254e6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ #]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="463" y="2" width="92" height="20" forecolor="#FFFFFF" backcolor="#333333" uuid="b078b986-0694-4932-b64d-848c6eb697ef"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[profit ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="418" y="2" width="62" height="20" forecolor="#FFFFFF" backcolor="#333333" uuid="070c6327-2b3a-40d8-929b-5b80623ee9be"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[sale]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="41" y="2" width="88" height="20" forecolor="#FFFFFF" backcolor="#333333" uuid="b13bd944-470b-463b-881b-df4a67e85a49"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[product_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="117" y="2" width="145" height="20" forecolor="#FFFFFF" backcolor="#333333" uuid="ed12d9c7-aaca-44f5-a0d9-858d18adf789"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="252" y="2" width="100" height="20" forecolor="#FFFFFF" backcolor="#333333" uuid="a54db615-33fd-4dc8-bbd0-406cfd34cf6a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[brand_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="377" y="2" width="46" height="20" forecolor="#FFFFFF" backcolor="#333333" uuid="11714808-22a9-4107-9dcc-74bdf78587b1"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="329" y="2" width="60" height="20" forecolor="#FFFFFF" backcolor="#333333" uuid="6fc84a1e-2435-417f-8363-c6e384402ac2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[avg_price]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="8" width="31" height="12" uuid="29a3aba2-7d8a-41dd-8758-712ef471c8f1"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoice_stock_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="8" width="147" height="12" uuid="6d69174a-d0a0-410b-9d1f-4e2fd9c04c84"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="252" y="8" width="77" height="12" uuid="b914aa1f-798a-4594-9b0f-ddf07a9b033e"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{brand_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="423" y="8" width="57" height="12" uuid="f58efbc8-fcba-44ca-8bf6-6866214d370f"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("##,###.00").format($F{sale})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="8" width="75" height="12" uuid="d798e213-2995-4212-a550-033f5b0d69f9"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("##,###.00").format($F{profit})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="31" y="8" width="74" height="12" uuid="e2a64873-081e-49b3-bcdc-9aa5778bddfa"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{product_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="8" width="60" height="12" uuid="7c28107d-e029-4a39-b083-daafa062a4b4"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("##,###.00").format($F{avg_price})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="389" y="8" width="34" height="12" uuid="8d4da641-d7b4-4caf-9d95-5638358c35ae"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="57" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="262" y="9" width="73" height="34" forecolor="#FFFFFF" backcolor="#333333" uuid="f908bea8-f096-4d3d-b5f2-8c586329ee61"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Sale :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="418" y="9" width="136" height="34" forecolor="#FFFFFF" backcolor="#333333" uuid="30700c2b-f083-4f55-9fd6-5810d9ac3afb"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Profit :]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="463" y="9" width="91" height="34" forecolor="#FFFFFF" backcolor="#333333" uuid="199d0ad7-6816-438b-ad95-8ef6558eaf8b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new DecimalFormat("##,###.00").format($V{profit})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="303" y="9" width="104" height="34" forecolor="#FFFFFF" backcolor="#333333" uuid="65794090-3130-4024-9575-abe337d01bda"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs. " + new DecimalFormat("##,###.00").format($V{sale})]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
